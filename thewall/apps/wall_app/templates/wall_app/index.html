@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>The Wall</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+.jumbotron{
+    padding: 30px;
+    background-color:rgb(150, 128, 150);
+}
+button{
+    margin: 10px;
+}
+</style>    
+</head>
+<body>
+<div class="jumbotron">
+    <h3 class="m-4">CodingDojo The Wall</h3> 
+    <h4 class="m-4">Login and Registration</h4>  
+</div>
+<div class="container">
+    <form action="/create" method=POST>
+        <h3 class="m-4">Register</h3>
+        <div class="form-group">
+                {% csrf_token %}
+                <label for="firstname">First Name:</label>
+                <input type="text" class="form-control" name="firstname" placeholder="First name">
+            </div>   
+            <div class="row">
+                <ul>
+                    {% for e in errors %}
+                        {% if e.label == "firstname" %}
+                            <li>{{e.message}}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div> 
+            <div class="form-group">
+                <label for="lastname">Last Name:</label>
+                <input type="text" class="form-control" name="lastname" placeholder="Last name">
+            </div>
+            <div class="row">
+                    <ul>
+                        {% for e in errors %}
+                            {% if e.label == "lastname" %}
+                                <li>{{e.message}}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div> 
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" name="email" placeholder="Email">
+            </div>
+            <div class="row">
+                    <ul>
+                        {% for e in errors %}
+                            {% if e.label == "email" %}
+                                <li>{{e.message}}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div> 
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" name="password" placeholder="Password">
+            </div>
+            <div class="row">
+                    <ul>
+                        {% for e in errors %}
+                            {% if e.label == "password" %}
+                                <li>{{e.message}}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div> 
+            <div class="form-group">
+                <label for="confirmpw">Confirm pw:</label>
+                <input type="password" class="form-control" name="confirmpw" placeholder="Confirm Password">
+            </div>
+            <div class="row">
+                    <ul>
+                        {% for e in errors %}
+                            {% if e.label == "confirmpw" %}
+                                <li>{{e.message}}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div> 
+        <button type="submit" class="btn btn-default">Register</button>
+        </form>
+        <form action="/validate_login" method=POST>
+        <h3 class="m-4">Login</h3>
+            <div class="form-group">
+                {% csrf_token %}
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" name="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" name="password" placeholder="Password">
+            </div>
+        <button type="submit" class="btn btn-default">Login</button>
+        
+        </form>
+        </div>
+    </form>
+</div>
+</body>
+</html>
